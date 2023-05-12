@@ -41,7 +41,7 @@ class UpdateOrderRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        if ($this->isFulFilled) {
+        if ($this->isFulFilled != "") {
             $this->merge([
                 'is_fulfilled' => $this->isFulFilled
             ]);
