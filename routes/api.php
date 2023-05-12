@@ -1,9 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\OrderController;
-
+use App\Http\Controllers\Api\V1\OrderController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,10 +18,10 @@ use App\Http\Controllers\OrderController;
 });
  */
 
-Route::group(['prefix' => 'orders'], function () {
-    Route::get('', [OrderController::class, 'index']);
-    Route::get('/{id}', [OrderController::class, 'show']);
-    Route::post('', [OrderController::class, 'store']);
-    Route::put('/{id}', [OrderController::class, 'update']);
-    Route::delete('/{id}', [OrderController::class, 'delete']);
+// api/v1
+Route::group([
+    'prefix' => 'v1',
+    'namespace' => 'App\Http\Controllers\Api\V1',
+], function () {
+    Route::apiResource('orders', OrderController::class);
 });

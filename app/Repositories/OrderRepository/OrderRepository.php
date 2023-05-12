@@ -2,39 +2,40 @@
 
 namespace App\Repositories\OrderRepository;
 
+use App\Filters\V1\OrdersFilter;
+use App\Http\Resources\V1\OrderResource;
 use App\Repositories\OrderRepository\Interfaces\OrderRepositoryInterface;
 use App\Models\Order;
+use Illuminate\Http\Request;
 
 
 class OrderRepository implements OrderRepositoryInterface
 {
-    public function getAllOrders()
+    public function getAllOrders($request)
     {
-        return Order::all();
+        $filter = new OrdersFilter();
+        $filterItems = $filter->transform($request); //[['column', 'operator', 'value']]
+
+        return Order::where($filterItems);
     }
 
-    public function getOrderById($orderId)
+    public function getOrderById($order)
     {
-        return Order::findOrFail($orderId);
+        return $order;
     }
 
-    public function deleteOrder($orderId)
+    public function createOrder($request)
     {
-        Order::destroy($orderId);
+        return Order::create($request);
     }
 
-    public function createOrder(array $orderDetails)
+    public function updateOrder($request, $order)
     {
-        return Order::create($orderDetails);
+        return $order->update($request);
     }
 
-    public function updateOrder($orderId, array $newDetails)
+    public function deleteOrder($order)
     {
-        return Order::whereId($orderId)->update($newDetails);
-    }
-
-    public function getFulfilledOrders()
-    {
-        return Order::where('is_fulfilled', true);
+        $order->delete();
     }
 }

@@ -1,12 +1,12 @@
 <?php
+
 namespace App\Repositories\OrderRepository\Interfaces;
 
-interface OrderRepositoryInterface 
+interface OrderRepositoryInterface
 {
-    public function getAllOrders();
+    public function getAllOrders($request);
     public function getOrderById($orderId);
     public function deleteOrder($orderId);
-    public function createOrder(array $orderDetails);
-    public function updateOrder($orderId, array $newDetails);
-    public function getFulfilledOrders();
+    public function createOrder($orderDetails);
+    public function updateOrder($orderId, $newDetails);
 }
