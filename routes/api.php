@@ -23,5 +23,6 @@ Route::group([
     'prefix' => 'v1',
     'namespace' => 'App\Http\Controllers\Api\V1',
 ], function () {
+    Route::apiResource('customers', CustomerController::class);
     Route::apiResource('orders', OrderController::class);
 });

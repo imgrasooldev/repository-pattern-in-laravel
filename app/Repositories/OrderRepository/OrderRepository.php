@@ -3,10 +3,8 @@
 namespace App\Repositories\OrderRepository;
 
 use App\Filters\V1\OrdersFilter;
-use App\Http\Resources\V1\OrderResource;
 use App\Repositories\OrderRepository\Interfaces\OrderRepositoryInterface;
 use App\Models\Order;
-use Illuminate\Http\Request;
 
 
 class OrderRepository implements OrderRepositoryInterface

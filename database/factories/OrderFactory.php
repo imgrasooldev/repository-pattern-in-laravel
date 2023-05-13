@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +19,7 @@ class OrderFactory extends Factory
     {
         return [
             'details'       => $this->faker->sentences(4, true),
-            'client'         => $this->faker->name(),
+            'customer_id'         => Customer::factory(),
             'is_fulfilled' => $this->faker->boolean(),
         ];
     }

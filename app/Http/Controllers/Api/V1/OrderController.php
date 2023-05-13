@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Api\BaseController;
-use App\Http\Requests\V1\{StoreOrderRequest, UpdateOrderRequest};
-use App\Http\Resources\V1\{OrderCollection, OrderResource};
+use App\Http\Requests\V1\Order\{StoreOrderRequest, UpdateOrderRequest};
+use App\Http\Resources\V1\Order\{OrderCollection, OrderResource};
 use App\Models\Order;
 use App\Repositories\OrderRepository\Interfaces\OrderRepositoryInterface;
 use Illuminate\Http\{Request, JsonResponse};

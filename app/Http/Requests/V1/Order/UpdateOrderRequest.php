@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\V1;
+namespace App\Http\Requests\V1\Order;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,15 +25,15 @@ class UpdateOrderRequest extends FormRequest
 
         if ($method == 'PUT') {
             return [
+                'customer_id' => ['required'],
                 'details' => ['required'],
-                'client' => ['required'],
                 'isFulFilled' => ['required']
 
             ];
         } else {
             return [
+                'customer_id' => ['sometimes', 'required'],
                 'details' => ['sometimes', 'required'],
-                'client' => ['sometimes', 'required'],
                 'isFulFilled' => ['sometimes', 'required']
             ];
         }

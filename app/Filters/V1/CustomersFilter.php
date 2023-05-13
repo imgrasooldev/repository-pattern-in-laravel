@@ -6,15 +6,19 @@ use Illuminate\Http\Request;
 use App\Filters\ApiFilter;
 
 
-class OrdersFilter extends ApiFilter
+class CustomersFilter extends ApiFilter
 {
     protected $safeParms = [
-        'client_id' => ['eq'],
-        'isFulFilled' => ['eq']
+        'name' => ['eq'],
+        'email' => ['eq'],
+        'address' => ['eq'],
+        'city' => ['eq'],
+        'state' => ['eq'],
+        'postalCode'  => ['eq', 'gt', 'lt']
     ];
 
     protected $columnMap = [
-        'isFulFilled' => 'is_fulfilled'
+        'postalCode' => 'postal_code'
     ];
 
     protected $operatorMap = [
