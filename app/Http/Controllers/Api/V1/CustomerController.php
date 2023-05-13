@@ -38,9 +38,6 @@ class CustomerController extends BaseController
      */
     public function store(StoreCustomerRequest $request): JsonResponse
     {
-        /* $success = new CustomerResource(Customer::create($request->all()));
-        return $this->sendResponse($success, 'Customers created successfully.'); */
-
         $success = new CustomerResource($this->customerRepository->createCustomer($request->all()));
         return $this->sendResponse($success, 'Customer stored successfully.');
     }
@@ -66,7 +63,6 @@ class CustomerController extends BaseController
      */
     public function update(UpdateCustomerRequest $request, Customer $customer): JsonResponse
     {
-
         $this->customerRepository->updateCustomer($request->all(), $customer);
         $success = new CustomerResource($customer);
         return $this->sendResponse($success, 'Customer updated successfully.');
@@ -80,8 +76,6 @@ class CustomerController extends BaseController
      */
     public function destroy(Customer $customer): JsonResponse
     {
-        /*         $customer->delete();
-        return $this->sendResponse([], 'Customer deleted successfully.'); */
         $this->customerRepository->deleteCustomer($customer);
         return $this->sendResponse([], 'Customer deleted successfully.');
     }
