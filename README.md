@@ -1,66 +1,136 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Repository Pattern in Laravel
+A simple Laravel application based on **REPOSITORY PATTERN**,  starter kit to kick start development using Laravel. 
 
-## About Laravel
+Application Name ................................................................... Repository Pattern in Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Laravel Version ...................................................................... 10.4.1
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+PHP Version ........................................................................... 8.1.10
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Database ................................................................................ MYSQL 
 
-## Learning Laravel
+## FEATURES:
+**Customers**  	(Create | Read | Update (PUT, PATCH) | Delete).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+**Orders**  		(Create | Read | Update (PUT, PATCH) | Delete) 
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Installation
+Go to CLI and run below commands:  
+```bash
+https://github.com/imgrasooldev/repository-rattern-in-laravel.git
+cd repository-rattern-in-laravel
+```
+open .env file (available) at root directory and check (or update) database details.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+using CLI run below commands also:  
+```bash
+composer install
+php artisan key:generate
+php artisan migrate:fresh --seed
+php artisan serve
+```
 
-## Laravel Sponsors
+## Endpoints: 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#### Get Customers: 
+```
+GET	/api/v1/customers
+```
+#### Get Single Customer: 
+```
+GET	/api/v1/customers/{id}
+```
+#### Get Filtered Customers: 
+```
+GET 	api/v1/customers?includeOrders=true&customer_id[eq]=60
+```
+"**IncludeOrders** query parameter is to include individual customer orders inside response."
 
-### Premium Partners
+#### Create Customer:
+```
+POST	/api/v1/customers
+        Body => {
+    			    "name": "",
+    				"email": "",
+    				"address": "",
+    				"city": "",
+    				"state": "",
+    				"postalCode": ""
+                }
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+#### Edit Customer:
+```
+PUT 	/api/v1/customers/{id}
+		Body => {
+                    "name": "",
+                    "email": "",
+                    "address": "",
+                    "city": "",
+                    "state": "",
+                    "postalCode": ""
+                }
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+PATCH 	/api/v1/customers/{id}
+		Body => {
+                    "name": "",
+                }
+```
 
-## Code of Conduct
+#### Delete Customer:
+```
+	DELETE 	/api/v1/customers/{id}
+```
+#### Get Orders:
+```
+GET 	/api/v1/orders
+```
+#### Get Single Order:
+```
+	GET 	/api/v1/orders/{id}
+```
+#### Get Filtered Orders:
+```
+	GET	    api/v1/orders?customer_id[eq]=50&isFulFilled[eq]=1
+```
+#### Create Order:
+```
+POST	/api/v1/orders
+        Body => {
+                    "customer_id": "131",
+					"details": "Lorem is simply a dummy text",
+					"isFulFilled": 0
+                }
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### Edit Order:
+```
+PUT 	/api/v1/orders/{id}
+        Body => {
+                    "details" : "adafABCDEFghijkls222", 
+					"customer_id" : 132,
+					"isFulFilled" : 1
+                }
 
-## Security Vulnerabilities
+PATCH 	/api/v1/orders/{id}
+        Body => {
+                    "details": "Lorem ipsum ABCDEFghijkl",
+					"customer_id": 133
+                }
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### Delete Order:
+```
+	DELETE 	/api/v1/orders/{id}
+```
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+
+Best of Luck :+1:
+
+Rate my work please :star:
