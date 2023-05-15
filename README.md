@@ -46,6 +46,28 @@ php artisan serve
 
 ## Endpoints: 
 
+#### Register User: 
+```
+POST /api/v1/register
+Body => {
+    "name": "",
+    "email": "",
+    "password": "",
+    "confirmPassword": ""
+}
+```
+
+#### Login User: 
+```
+POST	/api/v1/login
+Body => {
+    "email": "",
+    "password": ""
+}
+```
+
+**(Pass token from login/register response as bearer-token to all below apis as all are restricted with sanctum middleware)**
+
 #### Get Customers: 
 ```
 GET	/api/v1/customers
