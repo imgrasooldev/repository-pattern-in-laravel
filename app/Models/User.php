@@ -33,6 +33,12 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected function setPasswordAttribute($pass)
+    {
+
+        $this->attributes['password'] = bcrypt($pass);
+    }
+
     /**
      * The attributes that should be cast.
      *

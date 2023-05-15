@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Requests\V1\Order;
+namespace App\Http\Requests\V1\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreOrderRequest extends FormRequest
+class SignUpRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        $user = $this->user();
-        return $user != NULL && $user->tokenCan('create');
+        return true;
     }
 
     /**
@@ -20,19 +19,20 @@ class StoreOrderRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'customer_id' => ['required'],
-            'details' => ['required'],
-            'isFulFilled' => ['required']
+            'name' => ['required'],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'password' => ['required'],
+            'confirmPassword' => ['required', 'same:password'],
         ];
     }
 
     protected function prepareForValidation()
     {
         $this->merge([
-            'is_fulfilled' => $this->isFulFilled
+            'confirm_password' => $this->confirmPassword
         ]);
     }
 }

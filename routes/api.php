@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\{
+    AuthController,
     CustomerController,
     OrderController
 };
@@ -25,7 +26,14 @@ use App\Http\Controllers\Api\V1\{
 Route::group([
     'prefix' => 'v1',
     'namespace' => 'App\Http\Controllers\Api\V1',
+    'middleware' => 'auth:sanctum'
 ], function () {
+
+    Route::withoutMiddleware('auth:sanctum')->group(function () {
+        Route::post('login', [AuthController::class, 'signin']);
+        Route::post('register', [AuthController::class, 'signup']);
+    });
+
     Route::apiResource('customers', CustomerController::class);
     Route::apiResource('orders', OrderController::class);
 });
