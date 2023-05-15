@@ -1,6 +1,12 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-## Repository Pattern in Laravel
+
+# Repository Pattern? 
+
+**Repository pattern** is a design pattern commonly used in software development, including PHP, to manage data access and abstract the underlying data storage mechanism. It helps to separate the business logic of an application from the data access layer, providing a more modular and maintainable codebase.
+
+# Repository Pattern in Laravel
+
 A simple Laravel application based on **REPOSITORY PATTERN**,  starter kit to kick start development using Laravel. 
 
 Application Name ................................................................... Repository Pattern in Laravel
@@ -19,7 +25,7 @@ Database .......................................................................
 ## Installation
 Go to CLI and run below commands:  
 ```bash
-https://github.com/imgrasooldev/repository-rattern-in-laravel.git
+https://github.com/imgrasooldev/repository-pattern-in-laravel.git
 cd repository-rattern-in-laravel
 ```
 open .env file (available) at root directory and check (or update) database details.
