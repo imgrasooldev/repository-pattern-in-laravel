@@ -9,11 +9,12 @@ use App\Filters\ApiFilter;
 class OrdersFilter extends ApiFilter
 {
     protected $safeParms = [
-        'client_id' => ['eq'],
+        'customerId' => ['eq'],
         'isFulFilled' => ['eq']
     ];
 
     protected $columnMap = [
+        'customerId' => 'customer_id',
         'isFulFilled' => 'is_fulfilled'
     ];
 

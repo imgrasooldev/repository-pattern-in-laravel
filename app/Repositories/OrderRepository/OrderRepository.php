@@ -3,6 +3,7 @@
 namespace App\Repositories\OrderRepository;
 
 use App\Filters\V1\OrdersFilter;
+use App\Http\Resources\V1\Customer\CustomerResource;
 use App\Repositories\OrderRepository\Interfaces\OrderRepositoryInterface;
 use App\Models\Order;
 
@@ -14,11 +15,25 @@ class OrderRepository implements OrderRepositoryInterface
         $filter = new OrdersFilter();
         $filterItems = $filter->transform($request); //[['column', 'operator', 'value']]
 
-        return Order::where($filterItems);
+        $includeCustomer = $request->query('includeCustomer');
+
+        $orders = Order::where($filterItems);
+
+        if ($includeCustomer) {
+            $orders = $orders->with('customer');
+        }
+
+        return $orders;
     }
 
-    public function getOrderById($order)
+    public function getOrderById($request, $order)
     {
+        $includeCustomer = $request->query('includeCustomer');
+
+        if ($includeCustomer) {
+            return new CustomerResource($order->loadMissing('customer'));
+        }
+
         return $order;
     }
 

@@ -23,7 +23,7 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'customer_id' => ['required'],
+            'customerId' => ['required'],
             'details' => ['required'],
             'isFulFilled' => ['required']
         ];
@@ -32,6 +32,7 @@ class StoreOrderRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
+            'customer_id' => $this->customerId,
             'is_fulfilled' => $this->isFulFilled
         ]);
     }

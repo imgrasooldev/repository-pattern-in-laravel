@@ -26,14 +26,14 @@ class UpdateOrderRequest extends FormRequest
 
         if ($method == 'PUT') {
             return [
-                'customer_id' => ['required'],
+                'customerId' => ['required'],
                 'details' => ['required'],
                 'isFulFilled' => ['required']
 
             ];
         } else {
             return [
-                'customer_id' => ['sometimes', 'required'],
+                'customerId' => ['sometimes', 'required'],
                 'details' => ['sometimes', 'required'],
                 'isFulFilled' => ['sometimes', 'required']
             ];
@@ -44,6 +44,7 @@ class UpdateOrderRequest extends FormRequest
     {
         if ($this->isFulFilled != "") {
             $this->merge([
+                'customer_id' => $this->customerId,
                 'is_fulfilled' => $this->isFulFilled
             ]);
         }

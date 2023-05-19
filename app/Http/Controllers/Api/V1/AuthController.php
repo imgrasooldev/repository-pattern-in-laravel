@@ -29,7 +29,7 @@ class AuthController extends BaseController
 
             return $this->sendResponse($success, 'User signed in');
         } else {
-            return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
+            return $this->sendError('Invalid username or password.', ['error' => 'Invalid username or password'], 401);
         }
     }
     public function signup(SignUpRequest $request)

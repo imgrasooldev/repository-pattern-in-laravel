@@ -24,7 +24,9 @@ class CustomerResource extends JsonResource
             'city' => $this->city,
             'state' => $this->state,
             'postalCode' => $this->postal_code,
-            'ordersCount' => $this->whenCounted('orders'),
+            'ordersCount' =>  $this->whenLoaded('orders', function () {
+                return $this->orders->count();
+            }),
             'orders' => OrderResource::collection($this->whenLoaded('orders')),
         ];
     }

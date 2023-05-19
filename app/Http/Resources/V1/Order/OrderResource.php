@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\V1\Order;
 
+use App\Http\Resources\V1\Customer\CustomerResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -17,9 +18,10 @@ class OrderResource extends JsonResource
         // return parent::toArray($request);
         return [
             'id' => $this->id,
-            'customer_id' => $this->customer_id,
+            'customerId' => $this->customer_id,
             'details' => $this->details,
             'isFulFilled' => $this->is_fulfilled,
+            'customer' => new CustomerResource($this->whenLoaded('customer')),
         ];
     }
 }

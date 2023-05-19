@@ -32,9 +32,9 @@ class OrderController extends BaseController
         return $this->sendResponse($success, 'Order stored successfully.');
     }
 
-    public function show(Order $order): JsonResponse
+    public function show(Request $request, Order $order): JsonResponse
     {
-        $success = new OrderResource($this->orderRepository->getOrderById($order));
+        $success = new OrderResource($this->orderRepository->getOrderById($request, $order));
         return $this->sendResponse($success, 'Order retrieved successfully.');
     }
 
