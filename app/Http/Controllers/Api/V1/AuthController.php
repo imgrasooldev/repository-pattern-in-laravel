@@ -6,7 +6,7 @@ use App\Repositories\AuthRepository\Interfaces\AuthRepositoryInterface;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Requests\V1\Auth\SignInRequest;
 use App\Http\Requests\V1\Auth\SignUpRequest;
-use App\Http\Resources\v1\User\UserResource;
+use App\Http\Resources\V1\User\UserResource;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
