@@ -78,7 +78,7 @@ GET	/api/v1/customers/{id}
 ```
 #### Get Filtered Customers: 
 ```
-GET 	api/v1/customers?includeOrders=true&customer_id[eq]=60
+GET 	/api/v1/customers?includeOrders=true&name[eq]=Rubye Lemke
 ```
 "**IncludeOrders** query parameter is to include individual customer orders inside response."
 
@@ -86,12 +86,12 @@ GET 	api/v1/customers?includeOrders=true&customer_id[eq]=60
 ```
 POST	/api/v1/customers
         Body => {
-    			    "name": "",
-    				"email": "",
-    				"address": "",
-    				"city": "",
-    				"state": "",
-    				"postalCode": ""
+                    "name": "",
+                    "email": "",
+                    "address": "",
+                    "city": "",
+                    "state": "",
+                    "postalCode": ""
                 }
 ```
 
@@ -128,15 +128,16 @@ GET 	/api/v1/orders
 ```
 #### Get Filtered Orders:
 ```
-	GET	    api/v1/orders?customer_id[eq]=50&isFulFilled[eq]=1
+	GET	    /api/v1/orders?includeCustomer=true&isFulFilled[eq]=1
 ```
+"**IncludeCustomer** query parameter is to include customer against order in response."
 #### Create Order:
 ```
 POST	/api/v1/orders
         Body => {
-                    "customer_id": "131",
-					"details": "Lorem is simply a dummy text",
-					"isFulFilled": 0
+                    "customerId": "131",
+                    "details": "Lorem is simply a dummy text",
+                    "isFulFilled": 0
                 }
 ```
 
@@ -144,15 +145,15 @@ POST	/api/v1/orders
 ```
 PUT 	/api/v1/orders/{id}
         Body => {
-                    "details" : "adafABCDEFghijkls222", 
-					"customer_id" : 132,
+                    "customerId" : 132,
+                    "details" : "adafABCDEFghijkls222",
 					"isFulFilled" : 1
                 }
 
 PATCH 	/api/v1/orders/{id}
         Body => {
-                    "details": "Lorem ipsum ABCDEFghijkl",
-					"customer_id": 133
+                    "customerId" : 132,
+                    "details": "Lorem ipsum ABCDEFghijkl"
                 }
 ```
 
